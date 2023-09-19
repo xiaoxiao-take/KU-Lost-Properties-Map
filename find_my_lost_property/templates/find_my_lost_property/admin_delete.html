@@ -1,0 +1,95 @@
+{% extends "find_my_lost_property/form/admin_base.html" %}
+{% block title %}
+削除画面
+{% endblock title %}
+<!-- header -->
+{% block header %}
+削除画面
+{% endblock header %}
+{% block map %}
+    <!-- BootstrapのCSS読み込み
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-jQuery読み込み -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!-- BootstrapのJS読み込み -->
+    <!-- <script src="js/bootstrap.min.js"></script> --> 
+
+    <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBphQmYhhtlhV44xj7-W48_4tZqk__IDBE"></script>
+    <script>
+      let map;
+      
+      let properties = JSON.parse("{{properties}}".replace(/&quot;/g, '"'));
+
+      function initMap() {
+        var myLatLng = {lat:35.0273168, lng:135.7815290};
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16.05,
+          center: myLatLng
+        });
+        for (var property of properties) {
+          Pointmarker(property)
+        }
+      }
+      
+      function Pointmarker(property){
+        let latitude = parseFloat(property.fields.found_latitude)
+        let longitude = parseFloat(property.fields.found_longitude)
+        // ピンを立てる処理
+        var marker =new google.maps.Marker({
+          position: {lat:latitude, lng:longitude},
+          map: map,
+        });
+        // 表示文字列の生成
+        marker.id=parseFloat(property.pk)
+        // console.log(marker.id)
+        var category_name = property.fields.category_name
+        var color = property.fields.color
+        var finder_name = property.fields.finder_name
+        var found_time = property.fields.found_time
+        var manage_location = property.fields.manage_location
+        var p = [category_name, color, finder_name, manage_location, found_time]
+        var infostring = p.join(",").replace(/,/g, "<br>");
+        var content=`<p>${infostring}</p>`;
+        var infowindow = new google.maps.InfoWindow({
+          content: content
+        });
+
+        marker.addListener("mouseover", () => {
+          infowindow.open(map, marker);
+        });
+        marker.addListener("mouseout", () => {
+          infowindow.close();
+        });
+
+        function marker_del(marker){
+
+        }
+        marker.addListener("click", () => {
+        showConfirmation() ;
+        });
+        
+
+        function showConfirmation() {
+            var result = confirm("マーカーを削除しますか？");
+            if (result) {
+            let inputid = document.getElementById("lost_id");  
+            inputid.value=marker.id
+            document.getElementById("form").submit();
+        }
+      }
+    }
+    </script>
+{% endblock map %}
+<!-- main -->
+{% block main %}
+<div class="main">
+  <body onload="initMap()">
+    <div id="map" class="map"></div>
+    <form method="post" id="form">
+        {% csrf_token %}
+        <input type="hidden" id="lost_id" name="lost_id">
+        <input type="hidden" value="111111" id="test">
+    </form>
+  </body>
+</div>
+{% endblock main %}

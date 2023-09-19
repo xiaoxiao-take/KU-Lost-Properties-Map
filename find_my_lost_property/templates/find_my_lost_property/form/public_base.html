@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href='{% static "find_my_lost_property/style.css" %}'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+    {% block map %}
+    {% endblock map %}
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <h1 class="headline">
+            <a> 
+            {% block header %}
+            {% endblock header %}
+            </a>
+        </h1>
+        <ul class="header-list">
+            <li><a href="../admin_login">Login ｜</a></li>
+            <li><a href="../">Home ｜</a></li>
+            <li><a href="../about">about ｜</a></li>
+            <li><a href="../contact_us">Contact Us</a></li>
+        </ul>
+    </header>
+    <!-- main -->
+    {% block main %}
+    {% endblock main %}
+    <!-- footer -->
+    {% include "find_my_lost_property/form/public_footer.html" %}
+</body>
+</html>

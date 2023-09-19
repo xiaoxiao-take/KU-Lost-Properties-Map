@@ -1,0 +1,209 @@
+@charset "utf-8";
+
+/* ::-webkit-scrollbar {
+    width: 10px; 
+    height: 5px; 
+    background-color: #778899; 
+  } */
+
+  /* .sample{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-left: .5em;
+    margin-bottom: 2em;
+    background-color: #f5f5f5;
+    border-bottom: 5px solid #1a1a1a;
+    color: #1a1a1a
+  } */
+
+
+  /* 
+  以下 by matsuo
+  https://web-camp.io/magazine/archives/27870
+  https://di-acc2.com/programming/python/2563/
+  */
+  * {
+    margin:0; padding:0;
+  }
+  /* header */
+  header {
+    width: 100%;
+    padding: 15px 0;
+    margin: 0 auto;
+    text-align: center;
+    background-color:#a0d8ef;
+  }
+  header .headline{
+    padding-left: 80px;
+    font-size: 50px;
+    color: white;
+  }
+  header .header-list {
+    padding-right: 50px;
+    color: white;
+    list-style: none;
+    text-align: right;
+    display: flex;
+    justify-content: right; /* 中央寄せ */
+  }
+
+  /* main */
+  .main {
+    padding: 40px 0px;
+    overflow: auto;
+    height: 800px;
+    /*デバッグ用*/
+    /* height: 2000px;  */
+    margin: 0 auto;
+
+  }
+  .nav-list {
+    text-align: center;
+    display: flex;
+    justify-content: center; /* 中央寄せ */
+  }
+  
+  .nav-list-item {
+    list-style: none;
+    margin: 0 10px;
+  }
+  
+  /* ボタン関係 */
+  .kadomaru {
+    /* ↓ここを変えると角の丸みが変わります */
+    border-radius: 20px; 
+    box-shadow:1px 1px #1A6EA0;
+    border: 0;
+  }
+
+  .login-btn {
+    box-sizing: border-box;
+    padding: 10px;  
+    height: 40px;
+    width: 80px;
+    display: inline;
+    border: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 10px;
+    background-color: greenyellow;
+  }
+
+  .login-btn:hover {
+    color:#bfbfbf;
+    background: rgb(150, 214, 54);
+  }
+
+  .admin-btn {
+    box-sizing: border-box;
+    padding: 40px 80px;  
+    height: 300px;
+    width: 300px;
+    display: inline;
+    border: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 70px;
+  }
+
+  .admin-btn:hover {
+    color:#bfbfbf;
+  }
+
+  .btn-register {
+    background-color:burlywood;
+  }
+  .btn-register:hover {
+    background: rgb(180, 151, 113);
+  }
+
+  .btn-delete {
+    background-color: crimson;
+  }
+  .btn-delete:hover {
+    background-color: rgb(171, 33, 61);
+  }
+
+  .btn-login {
+    background-color: #d7cf3a;
+  }
+  .btn-login:hover {
+    background-color: #98943e;
+  }
+
+  /* map */
+  .map {
+    height: 700px; 
+    width: 60%; 
+    /* margin: 40px; */
+    margin: 0 auto;
+  }
+
+  /* footer */
+  /* 参考:https://magazine.techacademy.jp/magazine/19410 */
+  /* スクロールバーが上に出る問題が未解決 */
+  .wrapper{
+    /* min-height: 100vh; */
+    position: relative;/*←相対位置*/
+    padding-bottom: 30px;/*←footerの高さ 変更*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+  }
+
+  footer{
+    width: 100%;
+    background-color: #339999;   /* 色変更 */
+    text-align: center;
+    padding: 30px 0;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+  }
+
+  .footer-text {
+    color: #fff;
+  }
+    
+
+  .header h1{
+    text-align: left;
+  }
+
+  .main h1{
+    text-align: center;
+  }
+  .main h2{
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .help{
+    padding-top: 40px;
+    text-align: center;
+  }
+
+
+
+  /* 登録画面 */
+  div.reg{
+    background-color: #EEEEEE;
+    /* margin-left: 15%; */
+    /* margin-right: 15%; */
+  }
+
+  table.reg_form{
+    width: 100%;
+    border-spacing: 10px 30px;
+    padding-left:20px;
+  } 
+

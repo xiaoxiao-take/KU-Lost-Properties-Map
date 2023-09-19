@@ -1,0 +1,27 @@
+{% extends "find_my_lost_property/form/admin_base.html" %}
+<!-- head title -->
+{% block title %}
+管理者画面
+{% endblock title %}
+
+<!-- body -->
+<!-- header -->
+{% block header %}
+<a>管理者画面</a>
+{% endblock header %}
+
+{% block main %}
+<div class="main">
+    <ul class="nav-list">
+        <li class="nav-list-item">
+            <button onclick="location.href='../admin_register'" class="kadomaru admin-btn btn-register">登録</button>
+        </li>
+        <li class="nav-list-item">
+            <button onclick="location.href='../delete'" class="kadomaru admin-btn btn-delete">削除</button>
+        </li>
+        <li class="nav-list-item">
+            <button onclick="location.href='../select_confirmation'" class="kadomaru admin-btn btn-login">認証</button>
+        </li>
+    </ul>
+</div>
+{% endblock main %}

@@ -1,0 +1,27 @@
+{% extends "find_my_lost_property/form/public_base.html" %}
+{% block title %}
+ログイン画面
+{% endblock title %}
+<!-- header -->
+{% block header %}
+ログイン画面
+{% endblock header%}
+<!-- main -->
+{% block main %}
+<div class="main">
+    <div class="reg">
+        <form method="post" action="{% url 'Login' %}">
+        {% csrf_token %}
+        <table class="reg_form">
+        <tr>
+            <td><label for="userid">ユーザーID:</label></td>
+            <td><input type="text" name="userid"></td>
+            <td><label for="password">パスワード：</label></td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        </table>
+        <input type="submit" class="kadomaru login-btn " value="Login">
+        </form>
+    </div>
+</div>
+{% endblock main%}

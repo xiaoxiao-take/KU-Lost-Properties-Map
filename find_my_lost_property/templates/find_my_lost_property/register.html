@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+  <link rel="stylesheet" href='{% static "find_my_lost_property/style.css" %}'/>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map on Website</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBphQmYhhtlhV44xj7-W48_4tZqk__IDBE"></script>
+    <script>
+      let latitude;
+      let longitude;
+      let marker;
+      function initMap() {
+
+        var myLatLng = {lat:35.0273168, lng:135.7815290};
+        
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16.05,
+          center: myLatLng
+        });
+
+
+        map.addListener("click", (event) => {
+          // クリックされた場所の緯度と経度を取得
+          latitude = event.latLng.lat();
+          longitude = event.latLng.lng();
+          if (marker) {
+              marker.setMap(null);
+            }
+          marker = new google.maps.Marker({
+            position: {lat:latitude, lng:longitude},
+            map: map
+
+          });
+
+        });
+        
+
+
+      }
+
+      function register() {
+        let inputLatitude = document.getElementById("found_latitude");  
+        // 型を用意する
+        let inputLongitude = document.getElementById("found_longitude");
+
+        inputLatitude.value = latitude;
+        inputLongitude.value = longitude;
+
+        document.getElementById("form").submit();
+      }
+    </script>
+</head>
+<body onload="initMap()">
+  <header>
+    <h1 class="headline">
+        <a>About</a>
+    </h1>
+    <ul class="header-list">
+        <li><a href="../admin_login">Login ｜</a></li>
+        <li><a href="../">home ｜</a></li>
+        <li><a href="../about">about ｜</a></li>
+        <li><a href="../contact_us">Contact Us</a></li>
+    </ul>
+  </header>
+  <div id="map" style="height: 1000px; width: 70%;"></div>
+  <form method="post" id="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <label for="category_name">カテゴリ名: </label>
+      <input type="text" id="category_name" name="category_name" placeholder="財布, 鞄 etc..."/>
+    </div>
+    <div>
+      <label for="color">色: </label>
+      <input type="text" id="color" name="color" placeholder="赤, 青 etc..."/>
+    </div>
+    <div>
+      <label for="finder_name">拾い主の名前: </label>
+      <input type="text" id="finder_name" name="finder_name" placeholder="佐藤 太郎"/>
+    </div>
+    <div>
+      <label for="found_time">落とし物を拾った日時: </label>
+      <input type="datetime-local" id="found_time" name="found_time" />
+    </div>
+    <div>
+      <label for="manage_location">管理場所: </label>
+      <input type="text" id="manage_location" name="manage_location" placeholder="総合研究8号館 etc..."/>
+    </div>
+    <div>
+      <label for="true_image">落とし物の画像: </label>
+      <input type="file" id="true_image" name="true_image" />
+    </div>
+    <input type="hidden" id="found_latitude" name="found_latitude" />
+    <input type="hidden" id="found_longitude" name="found_longitude" />
+    <button type="button" onclick="register()"> 登録 </button>
+  </form>
+  <footer class="footer-text">
+    <p>© All rights reserved by 1班.</p>
+</footer>
+</body>
+</html>

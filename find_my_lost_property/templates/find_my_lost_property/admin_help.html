@@ -1,0 +1,32 @@
+{% extends "find_my_lost_property/form/admin_base.html" %}
+{% block title %}
+使用方法
+{% endblock title %}
+<!-- header -->
+{% block header %}
+使用方法
+{% endblock header%}
+<!-- main -->
+{% block main %}
+<div class="main">
+    <h1 class = "help">
+        登録
+        <h2>発見場所をクリックして赤ピンを立て，<br>落とし物の情報や拾得した時間，拾得者の情報と画像などを入力してください．
+        </h2>
+    </h1>
+    <h1></h1>
+    <h1 class = "help">
+        削除
+        <h2>立っている赤ピンをクリックして削除ボタンを押してください．<br>落とし物のデータが削除されます．
+            <br>
+        </h2>
+    </h1>
+    <h1 class = "help">
+        認証画面
+        <h2>画像生成AIが出力したダミー画像と本物の画像を用いて認証を行う．<br>
+認証が成功した時のみ落とし物を返還する
+            <br>
+        </h2>
+    </h1>
+</div>
+{% endblock main %}

@@ -1,0 +1,51 @@
+<!-- made by matsu -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>落とし物一覧</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>名前</th>
+            <th>色</th>
+            <th>見つけた人の名前</th>
+            <th>電話番号</th>
+            <th>見つけた時間</th>
+            <th>緯度</th>
+            <th>経度</th>
+            <th>画像</th>
+        </tr>
+        {% for property in properties %}
+        <tr>
+            <td>{{property.category_name}}</td>
+            <td>{{property.color}}</td>
+            <td>{{property.finder_name}}</td>
+            <td>{{property.finder_phone_number}}</td>
+            <td>{{property.found_time}}</td>
+            <td>{{property.found_latitude}}</td>
+            <td>{{property.found_longitude}}</td>
+            <td>
+                <img src="" width="150" height="100" />
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- {% for property in properties %}
+    <div class="post block">
+        <h2 class="subtitle">
+            <table></table>
+            {{property.category_name}}
+            {{property.color}}
+            {{property.finder_name}}
+            {{property.finder_phone_number}}
+            {{property.found_time}}
+            {{property.found_latitude}}
+            {{property.found_longitude}}
+    </div>
+    {% endfor %} -->
+</body>
+</html>

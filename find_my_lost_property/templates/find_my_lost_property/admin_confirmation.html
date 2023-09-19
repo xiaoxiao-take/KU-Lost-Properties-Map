@@ -1,0 +1,60 @@
+{% extends "find_my_lost_property/form/admin_base.html" %}
+{% block title %}
+落とし物認証
+{% endblock title %}
+<!-- header -->
+{% block header %}
+落とし物認証
+{% endblock header%}
+<!-- main -->
+{% block main %}
+<div class="main">
+  <style>
+    .img-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .img-overlay:hover {
+      opacity: 0.7;
+    }
+
+    /* 選択された画像のスタイル */
+    .img-overlay.selected {
+      opacity: 0.4;
+    }
+    button{
+      width: 3em;
+      height: 2em;
+      font-size: 150%;
+    }
+  </style>
+  <script>
+    var selected_image = null;
+    var selected_image_value = null;
+    function select_image(image, value) {
+      if(selected_image) {
+        selected_image.classList.remove('selected');
+      }
+      image.classList.add('selected');
+      selected_image = image;
+      document.getElementById('selected_image').value = value;
+    }
+  </script>
+  <form method="POST" id="select_image_form">
+    {% csrf_token %}
+    <div id="image-container">
+      {% for image in images %}
+      <label>
+        <!-- 画像の表示 -->
+        <img src="/static{{ image.img_path }}" class='img-overlay' width='18%' height='18%' onclick="select_image(this, '{{ image.is_true }}')">
+      </label>
+      {% endfor %}
+      <input type="hidden" name="selected_image" id="selected_image" value="">
+      <button type="submit">認証</button>
+    </div>
+  </form>
+  {% block content %}
+  {% endblock content%}
+</div>
+{% endblock main %}
